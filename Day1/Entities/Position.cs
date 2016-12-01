@@ -17,7 +17,28 @@ namespace Day1.Entities
 
         public Position GetNewPosition(Instruction instruction)
         {
-            throw new NotImplementedException();
+            var point = instruction.Direction == Direction.Left ? Point.TurnLeft() : Point.TurnRight();
+            var x = X;
+            var y = Y;
+            switch (point)
+            {
+                case Point.North:
+                    x += instruction.Distance;
+                    break;
+                case Point.East:
+                    y += instruction.Distance;
+                    break;
+                case Point.South:
+                    x -= instruction.Distance;
+                    break;
+                case Point.West:
+                    y -= instruction.Distance;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            return new Position(x, y, point);
         }
     }
 }

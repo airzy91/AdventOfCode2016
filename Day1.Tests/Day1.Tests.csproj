@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Entities\PointExtensionsTests.cs" />
+    <Compile Include="Entities\PositionTests.cs" />
     <Compile Include="Services\GetInstructionsTests.cs" />
     <Compile Include="Services\GetInstructionTests.cs" />
   </ItemGroup>
@@ -79,9 +80,6 @@
       <Project>{04AC89CB-7E1C-45C2-9723-171D44BC8EC7}</Project>
       <Name>Day1</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Entities" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

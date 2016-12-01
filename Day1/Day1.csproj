@@ -41,9 +41,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Services\GetInstruction.cs" />
     <Compile Include="Services\GetInstructions.cs" />
-    <Compile Include="Services\IFollowInstruction.cs" />
     <Compile Include="Services\IGetInstruction.cs" />
     <Compile Include="Services\IGetInstructions.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Services" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
