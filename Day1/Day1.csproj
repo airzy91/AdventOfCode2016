@@ -38,6 +38,7 @@
     <Compile Include="Entities\Point.cs" />
     <Compile Include="Entities\PointExtensions.cs" />
     <Compile Include="Entities\Position.cs" />
+    <Compile Include="IoC\ConventionModule.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Services\GetInstruction.cs" />
     <Compile Include="Services\GetInstructions.cs" />
@@ -46,6 +47,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Services" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da">
+      <HintPath>..\packages\Autofac.4.2.1\lib\net45\Autofac.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

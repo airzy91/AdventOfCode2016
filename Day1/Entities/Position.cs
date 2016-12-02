@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Permissions;
 
 namespace Day1.Entities
 {
@@ -40,5 +41,7 @@ namespace Day1.Entities
 
             return new Position(x, y, point);
         }
+
+        public int Distance() => Math.Abs(X) + Math.Abs(Y);
     }
 }

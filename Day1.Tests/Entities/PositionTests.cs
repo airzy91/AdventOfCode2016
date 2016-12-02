@@ -52,5 +52,16 @@ namespace Day1.Tests.Entities
             result.X.Should().Be(expectedX);
             result.Y.Should().Be(expectedY);
         }
+
+        [Fact]
+        public void WhenDistance()
+        {
+            var subject = AutoFixture.Create<Position>();
+            var expected = Math.Abs(subject.X) + Math.Abs(subject.Y);
+
+            var result = subject.Distance();
+
+            result.Should().Be(expected);
+        }
     }
 }
