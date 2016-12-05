@@ -1,4 +1,5 @@
-﻿using Day1.Entities;
+﻿using System.Collections.Generic;
+using Day1.Entities;
 
 namespace Day1.Services
 {
@@ -19,8 +20,9 @@ namespace Day1.Services
         {
             var input = _getInput.Get();
             var instructions = _getInstructions.Get(input);
-            var endPosition = _followInstructions.Follow(new Position(0, 0, Point.North), instructions);
-            return endPosition.Distance();
+            var startPosition = new Position(new Coordinate(0, 0), Point.North, new List<Coordinate>());
+            var endPosition = _followInstructions.Follow(startPosition, instructions);
+            return endPosition.Coordinate.GetDistanceFromZero();
         }
     }
 }

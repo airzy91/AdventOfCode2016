@@ -1,4 +1,5 @@
-﻿using Day1.Entities;
+﻿using System.Linq;
+using Day1.Entities;
 using Day1.Services;
 using FluentAssertions;
 using Moq.AutoMock;
@@ -29,8 +30,12 @@ namespace Day1.Tests.Services
             var result = subject.Follow(position, instruction);
 
             result.Point.Should().Be(expected.Point);
-            result.X.Should().Be(expected.X);
-            result.Y.Should().Be(expected.Y);
+            result.Coordinate.X.Should().Be(expected.Coordinate.X);
+            result.Coordinate.Y.Should().Be(expected.Coordinate.Y);
+            result.PreviousCoordinates.All(
+                prev => expected.PreviousCoordinates.Any(exp => exp.X == prev.X && exp.Y == prev.Y))
+                .Should()
+                .BeTrue();
         }
     }
 }

@@ -33,6 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Entities\Coordinate.cs" />
+    <Compile Include="Entities\CoordinateExtensions.cs" />
     <Compile Include="Entities\Direction.cs" />
     <Compile Include="Entities\Instruction.cs" />
     <Compile Include="Entities\Point.cs" />

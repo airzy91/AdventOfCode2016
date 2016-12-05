@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Linq;
 using Day1.Entities;
 using FluentAssertions;
 using Moq.AutoMock;
@@ -23,45 +23,30 @@ namespace Day1.Tests.Entities
         {
             var subject = AutoFixture.Create<Position>();
             var instruction = AutoFixture.Create<Instruction>();
-            var expectedPont = instruction.Direction == Direction.Left
-                ? subject.Point.TurnLeft()
-                : subject.Point.TurnRight();
-            var expectedY = subject.Y;
-            var expectedX = subject.X;
-            switch (expectedPont)
-            {
-                case Point.North:
-                    expectedX += instruction.Distance;
-                    break;
-                case Point.East:
-                    expectedY += instruction.Distance;
-                    break;
-                case Point.South:
-                    expectedX -= instruction.Distance;
-                    break;
-                case Point.West:
-                    expectedY -= instruction.Distance;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            var expectedPoint = subject.Point.Turn(instruction.Direction);
+            var expectedCoordinate = subject.Coordinate.GetNewCoordinate(expectedPoint, instruction.Distance);
+            var expectedPreviousCoordinates = subject.Coordinate.GetCoordinatesBetween(expectedPoint,
+                instruction.Distance);
+            var previousLength = subject.PreviousCoordinates.Count + instruction.Distance;
+
 
             var result = subject.GetNewPosition(instruction);
 
-            result.Point.Should().Be(expectedPont);
-            result.X.Should().Be(expectedX);
-            result.Y.Should().Be(expectedY);
-        }
-
-        [Fact]
-        public void WhenDistance()
-        {
-            var subject = AutoFixture.Create<Position>();
-            var expected = Math.Abs(subject.X) + Math.Abs(subject.Y);
-
-            var result = subject.Distance();
-
-            result.Should().Be(expected);
+            result.Point.Should().Be(expectedPoint);
+            result.Coordinate.X.Should().Be(expectedCoordinate.X);
+            result.Coordinate.Y.Should().Be(expectedCoordinate.Y);
+            result.PreviousCoordinates.Count.Should().Be(previousLength);
+            result.PreviousCoordinates.Count(
+                    coord => subject.PreviousCoordinates.Any(prev => prev.X == coord.X && prev.Y == coord.Y))
+                .Should()
+                .Be(subject.PreviousCoordinates.Count);
+            result.PreviousCoordinates.Any(coord => coord.X == subject.Coordinate.X && coord.Y == subject.Coordinate.Y)
+                .Should()
+                .BeTrue();
+            result.PreviousCoordinates.Count(
+                    coord => expectedPreviousCoordinates.Any(prev => prev.X == coord.X && prev.Y == coord.Y))
+                .Should()
+                .Be(expectedPreviousCoordinates.Count);
         }
     }
 }

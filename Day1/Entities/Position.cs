@@ -1,47 +1,31 @@
-﻿using System;
-using System.Security.Permissions;
+﻿using System.Collections.Generic;
 
 namespace Day1.Entities
 {
     public class Position
     {
-        public readonly int X;
-        public readonly int Y;
+        public readonly Coordinate Coordinate;
         public readonly Point Point;
+        public readonly List<Coordinate> PreviousCoordinates;
 
-        public Position(int x, int y, Point point)
+        public Position(Coordinate coordinate, Point point, List<Coordinate> previousCoordinates)
         {
-            X = x;
-            Y = y;
+            Coordinate = coordinate;
             Point = point;
+            PreviousCoordinates = previousCoordinates;
         }
 
         public Position GetNewPosition(Instruction instruction)
         {
             var newPoint = Point.Turn(instruction.Direction);
-            var x = X;
-            var y = Y;
-            switch (newPoint)
+            var newCoordinate = Coordinate.GetNewCoordinate(newPoint, instruction.Distance);
+            var previousCoordinates = new List<Coordinate>(PreviousCoordinates)
             {
-                case Point.North:
-                    x += instruction.Distance;
-                    break;
-                case Point.East:
-                    y += instruction.Distance;
-                    break;
-                case Point.South:
-                    x -= instruction.Distance;
-                    break;
-                case Point.West:
-                    y -= instruction.Distance;
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+                Coordinate,
+            };
+            previousCoordinates.AddRange(Coordinate.GetCoordinatesBetween(newPoint, instruction.Distance));
 
-            return new Position(x, y, newPoint);
+            return new Position(newCoordinate, newPoint, previousCoordinates);
         }
-
-        public int Distance() => Math.Abs(X) + Math.Abs(Y);
     }
 }

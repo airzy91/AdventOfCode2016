@@ -21,7 +21,7 @@ namespace Day1.Tests.Services
         }
 
         [Fact]
-        public void WhenSolve()
+        public void WhenPartOne()
         {
             var subject = Mocker.CreateInstance<Solve>();
             var input = AutoFixture.Create<string>();
@@ -30,14 +30,15 @@ namespace Day1.Tests.Services
             Mocker.GetMock<IGetInput>().Setup(ige => ige.Get()).Returns(input);
             Mocker.GetMock<IGetInstructions>().Setup(ige => ige.Get(input)).Returns(instructions);
             Mocker.GetMock<IFollowInstructions>()
-                .Setup(ife =>
-                        ife.Follow(It.Is<Position>(pos => pos.Point == Point.North && pos.X == 0 && pos.Y == 0),
-                            instructions))
+                .Setup(ife => ife.Follow(
+                        It.Is<Position>(
+                            pos => pos.Point == Point.North && pos.Coordinate.X == 0 && pos.Coordinate.Y == 0),
+                        instructions))
                 .Returns(endPosition);
 
             var result = subject.PartOne();
 
-            result.Should().Be(endPosition.Distance());
+            result.Should().Be(endPosition.Coordinate.GetDistanceFromZero());
         }
     }
 }
