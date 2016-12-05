@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Entities\CoordinateExtensionsTests.cs" />
+    <Compile Include="Entities\CoordinateTests.cs" />
     <Compile Include="Entities\PointExtensionsTests.cs" />
     <Compile Include="Entities\PositionTests.cs" />
     <Compile Include="Services\FollowInstructionsTests.cs" />

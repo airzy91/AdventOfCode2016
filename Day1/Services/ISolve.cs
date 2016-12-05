@@ -3,5 +3,6 @@
     public interface ISolve
     {
         int PartOne();
+        int PartTwo();
     }
 }

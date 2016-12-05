@@ -16,7 +16,8 @@ namespace Day1
             {
                 var solve = scope.Resolve<ISolve>();
 
-                Console.WriteLine(solve.PartOne());
+                Console.WriteLine($"Part One: {solve.PartOne()}");
+                Console.WriteLine($"Part Two: {solve.PartTwo()}");
             }
         }
     }

@@ -40,5 +40,29 @@ namespace Day1.Tests.Services
 
             result.Should().Be(endPosition.Coordinate.GetDistanceFromZero());
         }
+
+        [Fact]
+        public void WhenPartTwo()
+        {
+            var subject = Mocker.CreateInstance<Solve>();
+            var input = AutoFixture.Create<string>();
+            var instructions = AutoFixture.CreateMany<Instruction>().ToList();
+            var endPosition = AutoFixture.Create<Position>();
+            Mocker.GetMock<IGetInput>().Setup(ige => ige.Get()).Returns(input);
+            Mocker.GetMock<IGetInstructions>().Setup(ige => ige.Get(input)).Returns(instructions);
+            Mocker.GetMock<IFollowInstructions>()
+                .Setup(ife => ife.Follow(
+                    It.Is<Position>(
+                        pos => pos.Point == Point.North && pos.Coordinate.X == 0 && pos.Coordinate.Y == 0),
+                    instructions))
+                .Returns(endPosition);
+
+            var result = subject.PartTwo();
+
+            var expected = endPosition.PreviousCoordinates.GroupBy(coordinate => coordinate)
+                               .FirstOrDefault(group => group.Count() > 1)
+                               ?.Key.GetDistanceFromZero() ?? endPosition.Coordinate.GetDistanceFromZero();
+            result.Should().Be(expected);
+        }
     }
 }

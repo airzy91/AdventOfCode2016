@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Day1.Entities;
 
 namespace Day1.Services
@@ -18,11 +19,26 @@ namespace Day1.Services
 
         public int PartOne()
         {
+            var endPosition = GetEndPosition();
+
+            return endPosition.Coordinate.GetDistanceFromZero();
+        }
+
+        public int PartTwo()
+        {
+            var endPosition = GetEndPosition();
+
+            return endPosition.PreviousCoordinates.GroupBy(coordinate => coordinate)
+                .FirstOrDefault(group => group.Count() > 1)
+                ?.Key.GetDistanceFromZero() ?? endPosition.Coordinate.GetDistanceFromZero();
+        }
+
+        private Position GetEndPosition()
+        {
             var input = _getInput.Get();
             var instructions = _getInstructions.Get(input);
             var startPosition = new Position(new Coordinate(0, 0), Point.North, new List<Coordinate>());
-            var endPosition = _followInstructions.Follow(startPosition, instructions);
-            return endPosition.Coordinate.GetDistanceFromZero();
+            return _followInstructions.Follow(startPosition, instructions);
         }
     }
 }

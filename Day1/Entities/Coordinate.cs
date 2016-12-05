@@ -10,5 +10,20 @@
             X = x;
             Y = y;
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj?.GetType() != typeof(Coordinate))
+            {
+                return false;
+            }
+            var coordinate = (Coordinate) obj;
+            return coordinate.X == X && coordinate.Y == Y;
+        }
+
+        public override int GetHashCode()
+        {
+            return new {X, Y}.GetHashCode();
+        }
     }
 }
