@@ -18,10 +18,10 @@ namespace Day1.Entities
 
         public Position GetNewPosition(Instruction instruction)
         {
-            var point = instruction.Direction == Direction.Left ? Point.TurnLeft() : Point.TurnRight();
+            var newPoint = Point.Turn(instruction.Direction);
             var x = X;
             var y = Y;
-            switch (point)
+            switch (newPoint)
             {
                 case Point.North:
                     x += instruction.Distance;
@@ -39,7 +39,7 @@ namespace Day1.Entities
                     throw new ArgumentOutOfRangeException();
             }
 
-            return new Position(x, y, point);
+            return new Position(x, y, newPoint);
         }
 
         public int Distance() => Math.Abs(X) + Math.Abs(Y);

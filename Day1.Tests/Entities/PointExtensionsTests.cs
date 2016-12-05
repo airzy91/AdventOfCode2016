@@ -15,6 +15,22 @@ namespace Day1.Tests.Entities
         }
 
         [Theory]
+        [InlineData(Point.North, Point.West, Direction.Left)]
+        [InlineData(Point.East, Point.North, Direction.Left)]
+        [InlineData(Point.South, Point.East, Direction.Left)]
+        [InlineData(Point.West, Point.South, Direction.Left)]
+        [InlineData(Point.North, Point.East, Direction.Right)]
+        [InlineData(Point.East, Point.South, Direction.Right)]
+        [InlineData(Point.South, Point.West, Direction.Right)]
+        [InlineData(Point.West, Point.North, Direction.Right)]
+        public void WhenTurn(Point subject, Point expected, Direction direction)
+        {
+            var result = subject.Turn(direction);
+
+            result.Should().Be(expected);
+        }
+
+        [Theory]
         [InlineData(Point.North, Point.West)]
         [InlineData(Point.East, Point.North)]
         [InlineData(Point.South, Point.East)]

@@ -4,6 +4,11 @@ namespace Day1.Entities
 {
     public static class PointExtensions
     {
+        public static Point Turn(this Point point, Direction direction)
+        {
+            return direction == Direction.Left ? point.TurnLeft() : point.TurnRight();
+        }
+
         public static Point TurnLeft(this Point point)
         {
             switch (point)

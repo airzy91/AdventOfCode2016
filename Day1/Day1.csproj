@@ -40,13 +40,18 @@
     <Compile Include="Entities\Position.cs" />
     <Compile Include="IoC\ConventionModule.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Services\FollowInstruction.cs" />
+    <Compile Include="Services\FollowInstructions.cs" />
+    <Compile Include="Services\GetInput.cs" />
     <Compile Include="Services\GetInstruction.cs" />
     <Compile Include="Services\GetInstructions.cs" />
+    <Compile Include="Services\IFollowInstruction.cs" />
+    <Compile Include="Services\IFollowInstructions.cs" />
+    <Compile Include="Services\IGetInput.cs" />
     <Compile Include="Services\IGetInstruction.cs" />
     <Compile Include="Services\IGetInstructions.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Services" />
+    <Compile Include="Services\ISolve.cs" />
+    <Compile Include="Services\Solve.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=4.2.1.0, Culture=neutral, PublicKeyToken=17863af14b0044da">
