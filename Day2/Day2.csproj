@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{04AC89CB-7E1C-45C2-9723-171D44BC8EC7}</ProjectGuid>
+    <ProjectGuid>{EECD76F3-2B60-464D-8651-A9FC95F5EEB0}</ProjectGuid>
     <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Day1</RootNamespace>
-    <AssemblyName>Day1</AssemblyName>
+    <RootNamespace>Day2</RootNamespace>
+    <AssemblyName>Day2</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,31 +33,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Entities\Coordinate.cs" />
-    <Compile Include="Entities\CoordinateExtensions.cs" />
     <Compile Include="Entities\Direction.cs" />
-    <Compile Include="Entities\Instruction.cs" />
-    <Compile Include="Entities\Point.cs" />
-    <Compile Include="Entities\PointExtensions.cs" />
-    <Compile Include="Entities\Position.cs" />
+    <Compile Include="Entities\Line.cs" />
     <Compile Include="Program.cs" />
-    <Compile Include="Services\FollowInstruction.cs" />
-    <Compile Include="Services\FollowInstructions.cs" />
+    <Compile Include="Services\GetDirection.cs" />
     <Compile Include="Services\GetInput.cs" />
-    <Compile Include="Services\GetInstruction.cs" />
-    <Compile Include="Services\GetInstructions.cs" />
-    <Compile Include="Services\IFollowInstruction.cs" />
-    <Compile Include="Services\IFollowInstructions.cs" />
+    <Compile Include="Services\GetInputLines.cs" />
+    <Compile Include="Services\GetLine.cs" />
+    <Compile Include="Services\GetLines.cs" />
+    <Compile Include="Services\IGetDirection.cs" />
     <Compile Include="Services\IGetInput.cs" />
-    <Compile Include="Services\IGetInstruction.cs" />
-    <Compile Include="Services\IGetInstructions.cs" />
-    <Compile Include="Services\ISolve.cs" />
-    <Compile Include="Services\Solve.cs" />
+    <Compile Include="Services\IGetInputLines.cs" />
+    <Compile Include="Services\IGetLine.cs" />
+    <Compile Include="Services\IGetLines.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{8FBA9173-D5FA-4A55-80E8-1DF0727636C8}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Day1\Day1.csproj">
+      <Project>{04AC89CB-7E1C-45C2-9723-171D44BC8EC7}</Project>
+      <Name>Day1</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

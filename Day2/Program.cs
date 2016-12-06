@@ -1,9 +1,7 @@
-﻿using System;
-using Autofac;
+﻿using Autofac;
 using Common.IoC;
-using Day1.Services;
 
-namespace Day1
+namespace Day2
 {
     public class Program
     {
@@ -14,10 +12,6 @@ namespace Day1
             var container = builder.Build();
             using (var scope = container.BeginLifetimeScope())
             {
-                var solve = scope.Resolve<ISolve>();
-
-                Console.WriteLine($"Part One: {solve.PartOne()}");
-                Console.WriteLine($"Part Two: {solve.PartTwo()}");
             }
         }
     }

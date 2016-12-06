@@ -2,7 +2,7 @@
 using Autofac;
 using Module = Autofac.Module;
 
-namespace Day1.IoC
+namespace Common.IoC
 {
     public class ConventionModule : Module
     {
